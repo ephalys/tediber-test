@@ -1,16 +1,24 @@
 <template>
   <div id="app">
-    <TheHeader />
+    <div>
+      <TheHeader />
+      <SelectorWrapper />
+    </div>
+    <DummyContent />
   </div>
 </template>
 
 <script>
+import DummyContent from "@/components/DummyContent.vue";
+import SelectorWrapper from "@/components/SelectorWrapper.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
 export default {
   name: "App",
   components: {
     TheHeader,
+    SelectorWrapper,
+    DummyContent,
   },
 };
 </script>

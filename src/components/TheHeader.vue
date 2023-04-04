@@ -5,14 +5,15 @@
   </header>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #header {
   display: flex;
   align-items: center;
   width: 100%;
+  padding: 2rem;
   min-height: 130px; //make sure that the text is not cropped in mobile view
   background-color: $primary;
   color: white;
-  padding: 2rem;
+  z-index: 1;
 }
 </style>
