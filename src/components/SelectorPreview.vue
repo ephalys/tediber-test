@@ -12,10 +12,10 @@ export default {
 
 <style lang="scss" scoped>
 .selector-preview {
-  position: relative;
-  height: calc(100vh - 130px);
   position: sticky;
   top: 0px;
+  height: calc(100vh - 130px);
+  margin-bottom: 6rem;
 
   img {
     width: 100%;

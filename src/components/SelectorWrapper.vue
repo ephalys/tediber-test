@@ -19,7 +19,7 @@ export default {
 .selector-wrapper {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 1rem;
+  gap: 2rem;
   padding: 2rem;
 }
 </style>
