@@ -5,17 +5,22 @@
     <div>Content</div>
     <div>Content</div>
     <div>Content</div>
-    <div>Content</div>
   </div>
+  <TheLoader v-else />
 </template>
 
 <script>
 import SelectorContentHeading from "@/components/SelectorContentHeading.vue";
 import SelectorContentSeparator from "@/components/SelectorContentSeparator.vue";
+import TheLoader from "@/components/TheLoader.vue";
 
 export default {
   name: "SelectorContent",
-  components: { SelectorContentHeading, SelectorContentSeparator },
+  components: {
+    SelectorContentHeading,
+    SelectorContentSeparator,
+    TheLoader,
+  },
   data() {
     return {
       productData: null,
@@ -23,8 +28,14 @@ export default {
   },
   mounted() {
     fetch("/api.json")
-      .then((res) => res.json())
-      .then((data) => (this.productData = data));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data) => (this.productData = data))
+      .catch((error) => console.error("Fetch error:", error));
   },
 };
 </script>
