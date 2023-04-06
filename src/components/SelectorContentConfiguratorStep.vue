@@ -7,6 +7,7 @@
     <component
       :is="currentStepComponent"
       :options="stepOptions"
+      :variant="variant"
       @updateModifierTitle="handleModifier"
     />
   </div>
@@ -14,7 +15,7 @@
 
 <script>
 import BaseSelect from "@/components/BaseSelect.vue";
-import ColorSelector from "@/components/ColorSelector.vue";
+import OptionSelector from "@/components/OptionSelector.vue";
 import SelectorContentConfiguratorStepTitle from "@/components/SelectorContentConfiguratorStepTitle.vue";
 import { useProductStore } from "@/stores/useProductStore";
 import { mapStores, mapState } from "pinia";
@@ -22,7 +23,7 @@ import { mapStores, mapState } from "pinia";
 export default {
   components: {
     BaseSelect,
-    ColorSelector,
+    OptionSelector,
     SelectorContentConfiguratorStepTitle,
   },
   name: "SelectorContentConfiguratorStep",
@@ -52,10 +53,17 @@ export default {
           return "BaseSelect";
         case "sofa-simple-color":
         case "sofa-simple-feet-color":
-          return "ColorSelector";
+        case "sofa-simple-feet-form":
+          return "OptionSelector";
         default:
           return null;
       }
+    },
+    variant() {
+      return this.stepCode === "sofa-simple-feet-color" ||
+        this.stepCode === "sofa-simple-color"
+        ? "circle"
+        : "square";
     },
   },
   methods: {

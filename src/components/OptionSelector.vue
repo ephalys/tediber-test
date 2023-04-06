@@ -4,7 +4,7 @@
       class="color-selector-item"
       v-for="(option, index) in options"
       :key="index"
-      :class="{ active: isOptionActive(option) }"
+      :class="[variant, { active: isOptionActive(option) }]"
       :style="getBackgroundFromCode(option.code)"
       @mouseover="handleHover(option.value)"
       @mouseout="handleMouseOut"
@@ -15,26 +15,39 @@
 
 <script>
 const COLORS = [
-  { code: "sofa-simple-color_ECRU", value: "#C2B280" },
-  { code: "sofa-simple-color_GRIS", value: "#61605f" },
-  { code: "sofa-simple-color_BLEU", value: "#273347" },
-  { code: "sofa-simple-color_VERT", value: "#689d71" },
-  { code: "sofa-simple-color_KAKI", value: "#94812b" },
-  { code: "sofa-simple-color_TERRACOTTA", value: "#d7a285" },
+  { code: "sofa-simple-color_ECRU", value: "#C2B280", isPureColor: true },
+  { code: "sofa-simple-color_GRIS", value: "#61605f", isPureColor: true },
+  { code: "sofa-simple-color_BLEU", value: "#273347", isPureColor: true },
+  { code: "sofa-simple-color_VERT", value: "#689d71", isPureColor: true },
+  { code: "sofa-simple-color_KAKI", value: "#94812b", isPureColor: true },
+  { code: "sofa-simple-color_TERRACOTTA", value: "#d7a285", isPureColor: true },
   {
     code: "sofa-simple-feet-color_CLAIR",
     value: `url(${require("@/assets/img/sofa-simple-feet-color_CLAIR.png")}) center`,
+    isPureColor: false,
   },
   {
     code: "sofa-simple-feet-color_FONCE",
     value: `url(${require("@/assets/img/sofa-simple-feet-color_FONCE.png")}) center`,
+    isPureColor: false,
+  },
+  {
+    code: "sofa-simple-feet-form_ROND",
+    value: `url(${require("@/assets/img/feet-rond.jpeg")}) center/cover no-repeat`,
+    isPureColor: false,
+  },
+  {
+    code: "sofa-simple-feet-form_CARRE",
+    value: `url(${require("@/assets/img/feet-carre.jpeg")}) center/cover no-repeat`,
+    isPureColor: false,
   },
 ];
 
 export default {
-  name: "ColorSelector",
+  name: "OptionSelector",
   props: {
     options: Array,
+    variant: String,
   },
   data() {
     return {
@@ -70,9 +83,13 @@ export default {
     },
     getBackgroundFromCode(code) {
       const color = this.colors.find((c) => c.code === code);
-      return {
-        background: color?.value,
-      };
+      const style = {};
+      if (color.isPureColor) {
+        style.backgroundColor = color?.value;
+      } else {
+        style.background = color?.value;
+      }
+      return style;
     },
   },
 };
@@ -86,13 +103,22 @@ export default {
   margin-top: 1rem;
 
   &-item {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
     border: 1px solid transparent;
     cursor: pointer;
     transition: border 0.2s;
     z-index: 2;
+
+    &.circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    &.square {
+      width: 100px;
+      height: 100px;
+      border-radius: 1rem;
+    }
 
     &.active {
       border: 1px solid $primary;
