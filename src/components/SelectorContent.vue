@@ -2,9 +2,7 @@
   <div v-if="productData" class="selector-content">
     <SelectorContentHeading :product-name="productData.name" />
     <SelectorContentSeparator />
-    <div>Content</div>
-    <div>Content</div>
-    <div>Content</div>
+    <SelectorContentConfigurator />
   </div>
   <TheLoader v-else />
 </template>
@@ -12,30 +10,26 @@
 <script>
 import SelectorContentHeading from "@/components/SelectorContentHeading.vue";
 import SelectorContentSeparator from "@/components/SelectorContentSeparator.vue";
+import SelectorContentConfigurator from "@/components/SelectorContentConfigurator.vue";
 import TheLoader from "@/components/TheLoader.vue";
+
+import { useProductStore } from "@/stores/useProductStore";
+import { mapStores, mapState } from "pinia";
 
 export default {
   name: "SelectorContent",
   components: {
     SelectorContentHeading,
     SelectorContentSeparator,
+    SelectorContentConfigurator,
     TheLoader,
   },
-  data() {
-    return {
-      productData: null,
-    };
+  computed: {
+    ...mapStores(useProductStore),
+    ...mapState(useProductStore, ["productData"]),
   },
   mounted() {
-    fetch("/api.json")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
-      .then((data) => (this.productData = data))
-      .catch((error) => console.error("Fetch error:", error));
+    this.productStore.getProductData();
   },
 };
 </script>
@@ -44,10 +38,6 @@ export default {
 .selector-content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-
-  > div:not(.selector-content-heading):not(.selector-content-separator) {
-    height: 300px;
-  }
+  gap: 3rem;
 }
 </style>
