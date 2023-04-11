@@ -14,6 +14,9 @@ export const useProductStore = defineStore("product", {
       }
       return [];
     },
+    isConfiguratorCompleted() {
+      return this.steps?.length === this.userSelectedConfiguration?.length;
+    },
     fullPrice() {
       return `${this.price} €`;
     },
@@ -48,6 +51,8 @@ export const useProductStore = defineStore("product", {
       this.getMatchingVariant();
     },
     getMatchingVariant() {
+      if (!this.isConfiguratorCompleted) return;
+
       const productVariants = this.productData.variants;
       const userOptions = this.userSelectedConfiguration;
 
@@ -67,8 +72,6 @@ export const useProductStore = defineStore("product", {
           return;
         }
       }
-
-      this.productVariantFromUserConfiguration = null;
     },
     sendProductData() {
       const variantCode = this.productVariantFromUserConfiguration?.code;

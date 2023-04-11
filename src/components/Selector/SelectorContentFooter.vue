@@ -27,15 +27,13 @@ export default {
     ...mapState(useProductStore, [
       "productVariantFromUserConfiguration",
       "fullPrice",
+      "isConfiguratorCompleted",
     ]),
     ...mapActions(useProductStore, ["sendProductData"]),
-    isConfiguratorCompleted() {
-      return !!this.productVariantFromUserConfiguration;
-    },
   },
   methods: {
     handleSubmit() {
-      if (this.productVariantFromUserConfiguration) {
+      if (this.isConfiguratorCompleted) {
         this.productStore.sendProductData();
       }
     },
