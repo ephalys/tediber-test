@@ -3,6 +3,8 @@
     <SelectorContentHeading :product-name="productData.name" />
     <SelectorContentSeparator />
     <SelectorContentConfigurator />
+    <SelectorContentSeparator />
+    <SelectorContentFooter />
   </div>
   <TheLoader v-else />
 </template>
@@ -11,6 +13,7 @@
 import SelectorContentHeading from "@/components/SelectorContentHeading.vue";
 import SelectorContentSeparator from "@/components/SelectorContentSeparator.vue";
 import SelectorContentConfigurator from "@/components/SelectorContentConfigurator.vue";
+import SelectorContentFooter from "@/components/SelectorContentFooter.vue";
 import TheLoader from "@/components/TheLoader.vue";
 
 import { useProductStore } from "@/stores/useProductStore";
@@ -22,6 +25,7 @@ export default {
     SelectorContentHeading,
     SelectorContentSeparator,
     SelectorContentConfigurator,
+    SelectorContentFooter,
     TheLoader,
   },
   computed: {

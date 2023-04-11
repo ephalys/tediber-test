@@ -1,5 +1,4 @@
-<!--Using functional component here for faster rendering-->
-<template functional>
+<template>
   <div class="selector-content-separator">
     <img src="@/assets/img/zigzag.svg" alt="separator" />
   </div>
