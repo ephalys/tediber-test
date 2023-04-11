@@ -8,6 +8,7 @@
     <component
       :is="componentName(step.code)"
       :options="step.values"
+      :defaultOption="step.defaultOptionValue"
       :variant="variant(step.code)"
       :info="info(step.code)"
       @updateModifierTitle="handleModifier"

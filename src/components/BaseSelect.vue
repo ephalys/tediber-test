@@ -21,10 +21,17 @@ export default {
     options: Array,
     name: String,
     value: String,
+    defaultOption: String,
   },
   created() {
-    //Set the first value of options array as default
-    this.$emit("input", this.options[0].value);
+    const defaultOption = this.options.find(
+      (option) => option.code === this.defaultOption
+    );
+
+    //Set the default value provided by the API
+    if (defaultOption) {
+      this.$emit("input", defaultOption.value);
+    }
   },
 };
 </script>
