@@ -26,3 +26,20 @@ export const COLORS = [
     isPureColor: false,
   },
 ];
+
+export const componentNames = {
+  "sofa-simple-size": "BaseSelect",
+  "sofa-simple-color": "SelectorContentConfiguratorOptionPicker",
+  "sofa-simple-feet-color": "SelectorContentConfiguratorOptionPicker",
+  "sofa-simple-feet-form": "SelectorContentConfiguratorOptionPicker",
+};
+
+export const variants = {
+  "sofa-simple-color": "circle",
+  "sofa-simple-feet-color": "circle",
+  "sofa-simple-feet-form": "square",
+};
+
+export const infos = {
+  "sofa-simple-feet-form": "Les pieds mesurent 12cm de hauteur",
+};

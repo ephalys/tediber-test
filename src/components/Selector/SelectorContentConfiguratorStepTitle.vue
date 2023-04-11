@@ -1,5 +1,10 @@
 <template>
-  <h3>{{ title }}<span class="title-modifier" v-html="modifierSpan"></span></h3>
+  <h3>
+    <span :class="{ 'has-info': hasInfo }">
+      {{ title }}
+    </span>
+    <span class="title-modifier" v-html="modifierSpan"></span>
+  </h3>
 </template>
 
 <script>
@@ -8,6 +13,7 @@ export default {
   props: {
     title: String,
     titleModifier: String,
+    hasInfo: Boolean,
   },
   computed: {
     modifierSpan() {
@@ -18,7 +24,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title-modifier {
-  color: $grey;
+h3 {
+  .has-info {
+    &:after {
+      content: " *";
+    }
+  }
+  .title-modifier {
+    color: $grey;
+  }
 }
 </style>

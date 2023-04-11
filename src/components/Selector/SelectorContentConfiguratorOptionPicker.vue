@@ -1,26 +1,32 @@
 <template>
   <div class="color-selector">
-    <div
-      class="color-selector-item"
-      v-for="(option, index) in options"
-      :key="index"
-      :class="[variant, { active: isOptionActive(option) }]"
-      :style="getBackgroundFromCode(option.code)"
-      @mouseover="handleHover(option.value)"
-      @mouseout="handleMouseOut"
-      @click="handleClick(option.value)"
-    ></div>
+    <div class="color-selector-list">
+      <div
+        class="color-selector-item"
+        v-for="(option, index) in options"
+        :key="index"
+        :class="[variant, { active: isOptionActive(option) }]"
+        :style="getBackgroundFromCode(option.code)"
+        @mouseover="handleHover(option.value)"
+        @mouseout="handleMouseOut"
+        @click="handleClick(option.value)"
+      ></div>
+    </div>
+    <span v-if="info" class="color-selector-info">
+      {{ info }}
+    </span>
   </div>
 </template>
 
 <script>
-import { COLORS } from "@/helpers/colors";
+import { COLORS } from "@/components/Selector/config";
 
 export default {
   name: "SelectorContentConfiguratorOptionPicker",
   props: {
     options: Array,
     variant: String,
+    info: String,
   },
   data() {
     return {
@@ -71,9 +77,24 @@ export default {
 <style lang="scss" scoped>
 .color-selector {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 1.5rem;
-  margin-top: 1rem;
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  &-info {
+    font-size: 0.85rem;
+
+    &:before {
+      content: "*";
+    }
+  }
 
   &-item {
     border: 1px solid transparent;
