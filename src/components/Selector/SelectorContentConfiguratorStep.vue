@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     ...mapStores(useProductStore),
-    ...mapState(useProductStore, ["productData", "options"]),
+    ...mapState(useProductStore, ["options"]),
     ...mapActions(useProductStore, ["updateUserSelectedConfiguration"]),
   },
   methods: {

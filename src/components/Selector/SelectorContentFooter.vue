@@ -25,8 +25,6 @@ export default {
   computed: {
     ...mapStores(useProductStore),
     ...mapState(useProductStore, [
-      "productData",
-      "options",
       "productVariantFromUserConfiguration",
       "fullPrice",
     ]),

@@ -21,7 +21,7 @@ export default {
   components: { SelectorContentConfiguratorStep },
   computed: {
     ...mapStores(useProductStore),
-    ...mapState(useProductStore, ["productData", "steps"]),
+    ...mapState(useProductStore, ["steps"]),
     stepsLength() {
       return this.steps.length;
     },
