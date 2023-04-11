@@ -63,11 +63,16 @@ export default {
     getBackgroundFromCode(code) {
       const color = this.colors.find((c) => c.code === code);
       const style = {};
-      if (color.isPureColor) {
-        style.backgroundColor = color?.value;
-      } else {
-        style.background = color?.value;
+
+      if (color) {
+        const { value } = color;
+        const isHexaColor = value.startsWith("#");
+
+        style.background = isHexaColor
+          ? value
+          : `url("${require("@/assets/img/" + value)}") center/cover no-repeat`;
       }
+
       return style;
     },
   },
