@@ -4,6 +4,7 @@ export const useProductStore = defineStore("product", {
   state: () => ({
     productData: {},
     userSelectedConfiguration: [],
+    productVariantFromUserConfiguration: null,
   }),
   getters: {
     steps() {
@@ -39,6 +40,10 @@ export const useProductStore = defineStore("product", {
         //If the user has not selected an option for this step yet
         this.userSelectedConfiguration.push(stepItem);
       }
+
+      if (this.getMatchingVariant()) {
+        this.productVariantFromUserConfiguration = this.getMatchingVariant();
+      }
     },
     getMatchingVariant() {
       const productVariants = this.productData.variants;
@@ -55,14 +60,14 @@ export const useProductStore = defineStore("product", {
         );
 
         if (matching) {
-          return variant.code;
+          return variant;
         }
       }
 
       return null;
     },
     sendProductData() {
-      const variantCode = this.getMatchingVariant();
+      const variantCode = this.getMatchingVariant().code;
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },

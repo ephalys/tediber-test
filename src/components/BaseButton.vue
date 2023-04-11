@@ -1,5 +1,12 @@
 <template>
-  <button class="base-button" @click="$emit('click')">{{ name }}</button>
+  <button
+    class="base-button"
+    :class="{ disabled: disabled }"
+    @click="$emit('click')"
+    :disabled="disabled"
+  >
+    {{ name }}
+  </button>
 </template>
 
 <script>
@@ -7,6 +14,7 @@ export default {
   name: "BaseButton",
   props: {
     name: String,
+    disabled: Boolean,
   },
 };
 </script>
@@ -24,6 +32,11 @@ export default {
 
   &:hover {
     background-color: $secondary-light;
+  }
+
+  &.disabled {
+    background-color: $grey;
+    cursor: unset;
   }
 }
 </style>
