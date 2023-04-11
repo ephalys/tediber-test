@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import SelectorContentHeadingHightlights from "@/components/SelectorContentHeadingHightlights.vue";
+import SelectorContentHeadingHightlights from "@/components/Selector/SelectorContentHeadingHightlights.vue";
 
 export default {
   components: { SelectorContentHeadingHightlights },

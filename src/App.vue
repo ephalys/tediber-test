@@ -10,7 +10,7 @@
 
 <script>
 import DummyContent from "@/components/DummyContent.vue";
-import SelectorWrapper from "@/components/SelectorWrapper.vue";
+import SelectorWrapper from "@/components/Selector/SelectorWrapper.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
 export default {

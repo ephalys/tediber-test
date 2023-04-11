@@ -15,15 +15,15 @@
 
 <script>
 import BaseSelect from "@/components/BaseSelect.vue";
-import OptionSelector from "@/components/OptionSelector.vue";
-import SelectorContentConfiguratorStepTitle from "@/components/SelectorContentConfiguratorStepTitle.vue";
+import SelectorContentConfiguratorOptionPicker from "@/components/Selector/SelectorContentConfiguratorOptionPicker.vue";
+import SelectorContentConfiguratorStepTitle from "@/components/Selector/SelectorContentConfiguratorStepTitle.vue";
 import { useProductStore } from "@/stores/useProductStore";
 import { mapStores, mapState } from "pinia";
 
 export default {
   components: {
     BaseSelect,
-    OptionSelector,
+    SelectorContentConfiguratorOptionPicker,
     SelectorContentConfiguratorStepTitle,
   },
   name: "SelectorContentConfiguratorStep",
@@ -54,7 +54,7 @@ export default {
         case "sofa-simple-color":
         case "sofa-simple-feet-color":
         case "sofa-simple-feet-form":
-          return "OptionSelector";
+          return "SelectorContentConfiguratorOptionPicker";
         default:
           return null;
       }

@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import SelectorPreview from "@/components/SelectorPreview.vue";
-import SelectorContent from "@/components/SelectorContent.vue";
+import SelectorPreview from "@/components/Selector/SelectorPreview.vue";
+import SelectorContent from "@/components/Selector/SelectorContent.vue";
 
 export default {
   name: "SelectorWrapper",

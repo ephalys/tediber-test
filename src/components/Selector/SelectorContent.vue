@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import SelectorContentHeading from "@/components/SelectorContentHeading.vue";
-import SelectorContentSeparator from "@/components/SelectorContentSeparator.vue";
-import SelectorContentConfigurator from "@/components/SelectorContentConfigurator.vue";
-import SelectorContentFooter from "@/components/SelectorContentFooter.vue";
+import SelectorContentHeading from "@/components/Selector/SelectorContentHeading.vue";
+import SelectorContentSeparator from "@/components/Selector/SelectorContentSeparator.vue";
+import SelectorContentConfigurator from "@/components/Selector/SelectorContentConfigurator.vue";
+import SelectorContentFooter from "@/components/Selector/SelectorContentFooter.vue";
 import TheLoader from "@/components/TheLoader.vue";
 
 import { useProductStore } from "@/stores/useProductStore";

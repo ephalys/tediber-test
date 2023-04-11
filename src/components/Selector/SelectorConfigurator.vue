@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import SelectorContentConfiguratorStep from "@/components/SelectorContentConfiguratorStep.vue";
+import SelectorContentConfiguratorStep from "@/components/Selector/SelectorContentConfiguratorStep.vue";
 import { useProductStore } from "@/stores/useProductStore";
 import { mapStores, mapState } from "pinia";
 

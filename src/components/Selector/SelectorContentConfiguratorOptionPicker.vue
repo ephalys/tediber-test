@@ -17,7 +17,7 @@
 import { COLORS } from "@/helpers/colors";
 
 export default {
-  name: "OptionSelector",
+  name: "SelectorContentConfiguratorOptionPicker",
   props: {
     options: Array,
     variant: String,
