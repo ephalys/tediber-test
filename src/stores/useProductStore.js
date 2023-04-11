@@ -15,7 +15,7 @@ export const useProductStore = defineStore("product", {
       return [];
     },
     fullPrice() {
-      return `${this.price}€`;
+      return `${this.price} €`;
     },
   },
   actions: {
