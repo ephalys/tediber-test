@@ -11,6 +11,7 @@
       :variant="variant(step.code)"
       :info="info(step.code)"
       @updateModifierTitle="handleModifier"
+      v-model="stepValue"
     />
   </div>
 </template>
@@ -21,7 +22,7 @@ import SelectorContentConfiguratorOptionPicker from "@/components/Selector/Selec
 import SelectorContentConfiguratorStepTitle from "@/components/Selector/SelectorContentConfiguratorStepTitle.vue";
 import { componentNames, variants, infos } from "@/components/Selector/config";
 import { useProductStore } from "@/stores/useProductStore";
-import { mapStores, mapState } from "pinia";
+import { mapStores, mapState, mapActions } from "pinia";
 
 export default {
   components: {
@@ -36,11 +37,13 @@ export default {
   data() {
     return {
       titleModifier: null,
+      stepValue: null,
     };
   },
   computed: {
     ...mapStores(useProductStore),
     ...mapState(useProductStore, ["productData", "options"]),
+    ...mapActions(useProductStore, ["updateUserSelectedConfiguration"]),
   },
   methods: {
     handleModifier(value) {
@@ -54,6 +57,17 @@ export default {
     },
     info(code) {
       return infos[code] || null;
+    },
+    getCodeFromValue(value) {
+      const match = this.step.values.find((option) => option.value === value);
+      return match ? match.code : null;
+    },
+  },
+  watch: {
+    stepValue(newVal) {
+      const stepCode = this.step.code;
+      const itemCode = this.getCodeFromValue(newVal);
+      this.productStore.updateUserSelectedConfiguration(stepCode, itemCode);
     },
   },
 };

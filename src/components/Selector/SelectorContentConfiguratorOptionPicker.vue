@@ -27,6 +27,7 @@ export default {
     options: Array,
     variant: String,
     info: String,
+    value: String,
   },
   data() {
     return {
@@ -56,6 +57,7 @@ export default {
     },
     handleClick(optionValue) {
       this.selectedColor = optionValue;
+      this.$emit("input", optionValue);
     },
     handleMouseOut() {
       this.hoverColor = null;

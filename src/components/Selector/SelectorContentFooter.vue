@@ -1,15 +1,28 @@
 <template>
   <div class="selector-content-footer">
     <p class="selector-content-footer-total">1390€</p>
-    <BaseButton name="Ajouter au panier" />
+    <BaseButton name="Ajouter au panier" @click="handleSubmit" />
   </div>
 </template>
 
 <script>
 import BaseButton from "@/components/BaseButton.vue";
+import { useProductStore } from "@/stores/useProductStore";
+import { mapStores, mapState, mapActions } from "pinia";
+
 export default {
   components: { BaseButton },
   name: "SelectorContentFooter",
+  computed: {
+    ...mapStores(useProductStore),
+    ...mapState(useProductStore, ["productData", "options"]),
+    ...mapActions(useProductStore, ["sendProductData"]),
+  },
+  methods: {
+    handleSubmit() {
+      this.productStore.sendProductData();
+    },
+  },
 };
 </script>
 

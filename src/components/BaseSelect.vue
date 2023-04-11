@@ -1,9 +1,13 @@
 <template>
-  <select name="dimensions" class="base-select">
+  <select
+    class="base-select"
+    :value="value"
+    @input="$emit('input', $event.target.value)"
+  >
     <option
       v-for="(option, index) in options"
-      :value="option.value"
       :key="index"
+      :value="option.value"
     >
       {{ option.value }}
     </option>
@@ -16,6 +20,11 @@ export default {
   props: {
     options: Array,
     name: String,
+    value: String,
+  },
+  created() {
+    //Set the first value of options array as default
+    this.$emit("input", this.options[0].value);
   },
 };
 </script>
