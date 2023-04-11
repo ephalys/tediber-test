@@ -42,9 +42,9 @@ export default {
   },
   methods: {
     handleSubmit() {
-      if (!this.productVariantFromUserConfiguration)
-        this.error = "Veuillez configurer votre canapé";
-      this.productStore.sendProductData();
+      if (this.productVariantFromUserConfiguration) {
+        this.productStore.sendProductData();
+      }
     },
   },
 };

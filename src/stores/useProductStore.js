@@ -41,9 +41,7 @@ export const useProductStore = defineStore("product", {
         this.userSelectedConfiguration.push(stepItem);
       }
 
-      if (this.getMatchingVariant()) {
-        this.productVariantFromUserConfiguration = this.getMatchingVariant();
-      }
+      this.getMatchingVariant();
     },
     getMatchingVariant() {
       const productVariants = this.productData.variants;
@@ -60,14 +58,16 @@ export const useProductStore = defineStore("product", {
         );
 
         if (matching) {
-          return variant;
+          console.log(variant);
+          this.productVariantFromUserConfiguration = variant;
+          return;
         }
       }
 
-      return null;
+      this.productVariantFromUserConfiguration = null;
     },
     sendProductData() {
-      const variantCode = this.getMatchingVariant().code;
+      const variantCode = this.productVariantFromUserConfiguration?.code;
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
