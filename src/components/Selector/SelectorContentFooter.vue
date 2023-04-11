@@ -1,7 +1,7 @@
 <template>
   <div class="selector-content-footer">
     <p class="selector-content-footer-total">
-      {{ price }}
+      {{ fullPrice }}
     </p>
     <BaseButton
       name="Ajouter au panier"
@@ -28,14 +28,9 @@ export default {
       "productData",
       "options",
       "productVariantFromUserConfiguration",
+      "fullPrice",
     ]),
     ...mapActions(useProductStore, ["sendProductData"]),
-    price() {
-      const price = this.isConfiguratorCompleted
-        ? this.productVariantFromUserConfiguration?.price
-        : "0";
-      return `${price}€`;
-    },
     isConfiguratorCompleted() {
       return !!this.productVariantFromUserConfiguration;
     },

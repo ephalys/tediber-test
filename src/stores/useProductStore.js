@@ -5,6 +5,7 @@ export const useProductStore = defineStore("product", {
     productData: {},
     userSelectedConfiguration: [],
     productVariantFromUserConfiguration: null,
+    price: 0,
   }),
   getters: {
     steps() {
@@ -12,6 +13,9 @@ export const useProductStore = defineStore("product", {
         return this.productData.options;
       }
       return [];
+    },
+    fullPrice() {
+      return `${this.price}€`;
     },
   },
   actions: {
@@ -58,8 +62,8 @@ export const useProductStore = defineStore("product", {
         );
 
         if (matching) {
-          console.log(variant);
           this.productVariantFromUserConfiguration = variant;
+          this.price = variant.price;
           return;
         }
       }
