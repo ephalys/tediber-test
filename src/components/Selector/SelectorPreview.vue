@@ -14,7 +14,7 @@ export default {
 .selector-preview {
   position: sticky;
   top: 0px;
-  height: calc(100vh - 130px);
+  max-height: calc(100vh - 130px);
   margin-bottom: 6rem;
 
   img {
