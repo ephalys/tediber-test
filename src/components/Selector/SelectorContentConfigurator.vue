@@ -1,6 +1,6 @@
 <template>
   <div class="selector-content-configurator">
-    <h2>Configurez votre canapé et rendez-le unique</h2>
+    <h2>Configurez votre canapé</h2>
     <div class="selector-content-configurator-steps">
       <SelectorContentConfiguratorStep
         v-for="(step, index) in steps"
